@@ -1,18 +1,21 @@
 package com.example.foo_spring_boot.controller;
 
+import com.example.foo_spring_boot.model.Response;
 import com.example.foo_spring_boot.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.foo_spring_boot.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RestController
+@RequestMapping("/")
 public class MainController {
 
-    @GetMapping("/main")
-    public User main(@RequestParam(value = "name", defaultValue = "unknown") String name) {
-        return User.builder()
-            .id(123)
-            .name(name)
-            .build();
+    private final UserService userService;
+
+    @RequestMapping(value = "main", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Response main(@RequestParam(value = "id", defaultValue = "unknown") String id) {
+        return userService.get(id);
     }
 }
