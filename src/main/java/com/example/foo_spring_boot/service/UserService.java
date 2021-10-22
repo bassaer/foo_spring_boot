@@ -21,11 +21,7 @@ public class UserService {
     public Response get(final String id) {
         return Optional.ofNullable(id)
             .map(userRepository::find)
-            .map(user -> Response.builder()
-                    .id(user.getId())
-                    .name(user.getName())
-                    .rank(user.getRank())
-                    .build())
+            .map(user -> new ModelMapper().map(user, Response.class))
             .orElse(null);
     }
 }
