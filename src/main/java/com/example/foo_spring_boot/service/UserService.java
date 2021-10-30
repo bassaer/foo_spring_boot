@@ -2,20 +2,18 @@ package com.example.foo_spring_boot.service;
 
 import com.example.foo_spring_boot.model.Response;
 import com.example.foo_spring_boot.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@Component
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Nullable
     public Response get(final String id) {
