@@ -21,7 +21,7 @@ import static java.util.Objects.nonNull;
 public class LoggerAdvice {
 
     @Around("@annotation(enableLogger)")
-    public Object aroundLog(@NonNull final ProceedingJoinPoint joinPoint, @NonNull final EnableLogger enableLogger) throws Throwable{
+    public Object aroundLog(@NonNull final ProceedingJoinPoint joinPoint, @NonNull final EnableLogger enableLogger) throws Throwable {
         System.out.println("Before LoggerAdvice...");
         User result = (User) joinPoint.proceed();
         if (nonNull(result)) {
