@@ -18,6 +18,6 @@ public class MainController {
 
     @RequestMapping(value = "main", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Response main(@RequestParam(value = "id", defaultValue = "unknown") String id) {
-        return userService.get(id);
+        return userService.find(id);
     }
 }
